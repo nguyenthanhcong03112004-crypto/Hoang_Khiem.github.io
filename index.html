@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoàng Khiêm - IELTS Speaking Hub</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="text-slate-800 py-10 px-4 md:px-8 flex flex-col items-center justify-center min-h-screen">
+
+    <!-- Header Section -->
+    <header class="text-center mb-12 max-w-2xl mx-auto animate-fade-in-up">
+        <div class="inline-block p-3 rounded-full bg-white shadow-md mb-4">
+            <i class="fas fa-graduation-cap text-3xl text-indigo-600"></i>
+        </div>
+        <h1 class="font-heading text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 leading-tight">
+            IELTS Speaking Practice
+        </h1>
+        <p class="text-slate-600 text-lg md:text-xl leading-relaxed">
+            Chào mừng đến với trang ôn tập Speaking của <span class="font-bold text-indigo-600">Hoàng Khiêm</span>. 
+            Hãy chọn một chủ đề bên dưới để bắt đầu luyện tập, ghi âm và kiểm tra từ vựng.
+        </p>
+    </header>
+
+    <!-- Grid Navigation -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl animate-fade-in-up" style="animation-delay: 0.2s">
+
+        <!-- Card 1: Daily Routine -->
+        <a href="Hoang_Khiem_1.html" class="group block bg-white rounded-3xl p-6 shadow-lg border border-slate-100 card-hover transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-bl-full -mr-8 -mt-8 opacity-50 group-hover:scale-110 transition-transform"></div>
+            
+            <div class="w-14 h-14 rounded-2xl bg-orange-500 text-white flex items-center justify-center text-2xl mb-6 shadow-orange-500/30 shadow-lg relative z-10">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            
+            <h3 class="font-heading text-xl font-bold text-slate-800 mb-2 group-hover:text-orange-600 transition-colors">Session 1</h3>
+            <p class="text-sm font-bold text-orange-500 uppercase tracking-wider mb-4">Daily Routine</p>
+            
+            <ul class="text-slate-500 space-y-2 text-sm mb-6">
+                <li><i class="fas fa-check text-orange-400 mr-2"></i>Morning Routine</li>
+                <li><i class="fas fa-check text-orange-400 mr-2"></i>Walking & Park</li>
+                <li><i class="fas fa-check text-orange-400 mr-2"></i>Shopping Habits</li>
+            </ul>
+
+            <div class="flex items-center text-orange-600 font-bold text-sm">
+                Bắt đầu ngay <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+        </a>
+
+        <!-- Card 2: House & Travel -->
+        <a href="Hoang_Khiem_2.html" class="group block bg-white rounded-3xl p-6 shadow-lg border border-slate-100 card-hover transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-sky-100 rounded-bl-full -mr-8 -mt-8 opacity-50 group-hover:scale-110 transition-transform"></div>
+            
+            <div class="w-14 h-14 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-2xl mb-6 shadow-sky-500/30 shadow-lg relative z-10">
+                <i class="fas fa-plane-departure"></i>
+            </div>
+            
+            <h3 class="font-heading text-xl font-bold text-slate-800 mb-2 group-hover:text-sky-600 transition-colors">Session 2</h3>
+            <p class="text-sm font-bold text-sky-500 uppercase tracking-wider mb-4">House & Travel</p>
+            
+            <ul class="text-slate-500 space-y-2 text-sm mb-6">
+                <li><i class="fas fa-check text-sky-400 mr-2"></i>City Life vs Countryside</li>
+                <li><i class="fas fa-check text-sky-400 mr-2"></i>Pets & Animals</li>
+                <li><i class="fas fa-check text-sky-400 mr-2"></i>Holidays & Beach</li>
+            </ul>
+
+            <div class="flex items-center text-sky-600 font-bold text-sm">
+                Bắt đầu ngay <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+        </a>
+
+        <!-- Card 3: Culture & Hobbies -->
+        <a href="Hoang_Khiem_3.html" class="group block bg-white rounded-3xl p-6 shadow-lg border border-slate-100 card-hover transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-amber-100 rounded-bl-full -mr-8 -mt-8 opacity-50 group-hover:scale-110 transition-transform"></div>
+            
+            <div class="w-14 h-14 rounded-2xl bg-amber-500 text-white flex items-center justify-center text-2xl mb-6 shadow-amber-500/30 shadow-lg relative z-10">
+                <i class="fas fa-utensils"></i>
+            </div>
+            
+            <h3 class="font-heading text-xl font-bold text-slate-800 mb-2 group-hover:text-amber-600 transition-colors">Session 3</h3>
+            <p class="text-sm font-bold text-amber-500 uppercase tracking-wider mb-4">Lifestyle & Culture</p>
+            
+            <ul class="text-slate-500 space-y-2 text-sm mb-6">
+                <li><i class="fas fa-check text-amber-400 mr-2"></i>Cooking & Food (Pho)</li>
+                <li><i class="fas fa-check text-amber-400 mr-2"></i>Fashion & Personality</li>
+                <li><i class="fas fa-check text-amber-400 mr-2"></i>Books & Movies</li>
+            </ul>
+
+            <div class="flex items-center text-amber-600 font-bold text-sm">
+                Bắt đầu ngay <i class="fas fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-16 text-center text-slate-400 text-sm">
+        <p>&copy; 2024 Hoang Khiem IELTS Practice.</p>
+        <p class="mt-1 opacity-75">Hosted on GitHub Pages</p>
+    </footer>
+
+</body>
+</html>
