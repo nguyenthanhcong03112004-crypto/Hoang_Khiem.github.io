@@ -1,0 +1,1466 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nguyễn Hoàng Tú Uyên buổi 1</title>
+    
+    <!-- Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: '#ea580c', /* Orange 600 */
+                        accent: '#e11d48', /* Rose 600 */
+                        highlight: '#fb923c', /* Orange 400 */
+                        paper: '#fff7ed', /* Orange 50 */
+                    },
+                    animation: {
+                        'slide-up': 'slideUp 0.4s ease-out forwards',
+                        'fade-in': 'fadeIn 0.3s ease-out forwards',
+                    },
+                    keyframes: {
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #fff7ed 0%, #fff1f2 100%); /* Orange 50 to Rose 50 */
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px rgba(234, 88, 12, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #fdba74;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #f97316;
+        }
+
+        /* Content Formatting */
+        .hint-content ul { list-style: none; padding-left: 0; margin-top: 0.5rem; }
+        .hint-content li { position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem; color: #7c2d12; line-height: 1.6; }
+        .hint-content li::before {
+            content: '\f058'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            position: absolute; left: 0; top: 3px; color: #ea580c;
+        }
+        .hint-content strong { color: #c2410c; font-weight: 700; }
+        .hint-content h4 { font-weight: 800; color: #9a3412; margin-top: 1.2rem; margin-bottom: 0.6rem; font-family: 'Poppins', sans-serif; }
+        
+        .sample-answer {
+            background: #fff7ed; border-left: 4px solid #f97316;
+            padding: 1rem; margin: 0.8rem 0; border-radius: 0 0.5rem 0.5rem 0;
+            font-style: italic; color: #9a3412; font-size: 0.95rem;
+        }
+
+        /* Flip Card Styles */
+        .flip-card { perspective: 1000px; }
+        .flip-card-inner {
+            position: relative; width: 100%; height: 100%; text-align: center;
+            transition: transform 0.6s; transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
+            position: absolute; width: 100%; height: 100%;
+            -webkit-backface-visibility: hidden; backface-visibility: hidden;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            border-radius: 1.5rem; padding: 2rem;
+        }
+        .flip-card-back { transform: rotateY(180deg); background-color: #fff7ed; border: 2px solid #ea580c; }
+        .flip-card-front { background-color: white; border: 1px solid #fed7aa; }
+
+        /* Recording Animation */
+        .recording-pulse {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+        }
+
+        /* Checkbox custom */
+        .custom-checkbox { width: 1.25rem; height: 1.25rem; accent-color: #ea580c; cursor: pointer; }
+    </style>
+</head>
+<body class="flex flex-col h-screen text-slate-800 relative">
+
+    <!-- Navbar -->
+    <nav class="glass-panel sticky top-0 z-40 px-4 md:px-6 py-3 shadow-sm">
+        <div class="flex justify-between items-center mb-3 md:mb-0">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-brand to-rose-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <div>
+                    <h1 class="font-heading font-bold text-lg leading-tight text-slate-800">Nguyễn Hoàng Tú Uyên buổi 1</h1>
+                    <p class="text-[10px] md:text-xs text-slate-500 font-medium uppercase tracking-wider">TOEIC Speaking Part 3</p>
+                </div>
+            </div>
+            
+            <!-- Mode Switcher (Desktop) -->
+            <div class="hidden md:flex bg-slate-100 p-1 rounded-xl">
+                <button onclick="switchMode('speaking')" class="mode-btn active-mode px-4 py-2 rounded-lg text-sm font-bold transition-all" data-mode="speaking">
+                    <i class="fas fa-comment-dots mr-2"></i>Speaking
+                </button>
+                <button onclick="switchMode('flashcard')" class="mode-btn px-4 py-2 rounded-lg text-sm font-bold text-slate-500 hover:text-slate-700 transition-all" data-mode="flashcard">
+                    <i class="fas fa-layer-group mr-2"></i>Flashcards
+                </button>
+                <button onclick="switchMode('quiz')" class="mode-btn px-4 py-2 rounded-lg text-sm font-bold text-slate-500 hover:text-slate-700 transition-all" data-mode="quiz">
+                    <i class="fas fa-puzzle-piece mr-2"></i>Quiz
+                </button>
+                <button onclick="switchMode('voiceManager')" class="mode-btn px-4 py-2 rounded-lg text-sm font-bold text-slate-500 hover:text-slate-700 transition-all" data-mode="voiceManager">
+                    <i class="fas fa-tasks mr-2"></i>Quản lý Voice
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button onclick="document.getElementById('mobileMenu').classList.toggle('hidden')" class="md:hidden text-slate-600 text-xl p-2">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden pb-3 border-t border-slate-100 mt-2 pt-2 grid grid-cols-2 gap-2">
+            <button onclick="switchMode('speaking')" class="flex flex-col items-center p-2 rounded-lg bg-orange-50 text-brand font-bold text-xs">
+                <i class="fas fa-comment-dots mb-1 text-lg"></i> Speaking
+            </button>
+            <button onclick="switchMode('flashcard')" class="flex flex-col items-center p-2 rounded-lg bg-white text-slate-500 font-medium text-xs">
+                <i class="fas fa-layer-group mb-1 text-lg"></i> Flashcards
+            </button>
+            <button onclick="switchMode('quiz')" class="flex flex-col items-center p-2 rounded-lg bg-white text-slate-500 font-medium text-xs">
+                <i class="fas fa-puzzle-piece mb-1 text-lg"></i> Quiz
+            </button>
+            <button onclick="switchMode('voiceManager')" class="flex flex-col items-center p-2 rounded-lg bg-white text-slate-500 font-medium text-xs">
+                <i class="fas fa-tasks mb-1 text-lg"></i> Voice
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6 overflow-hidden relative">
+        
+        <!-- Background Decor -->
+        <div class="absolute top-10 left-10 w-64 h-64 bg-orange-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse"></div>
+        <div class="absolute bottom-10 right-10 w-64 h-64 bg-rose-200 rounded-full mix-blend-multiply filter blur-3xl opacity-40 animate-pulse" style="animation-delay: 2s"></div>
+
+        <!-- Start Screen -->
+        <div id="startScreen" class="glass-panel w-full max-w-2xl rounded-3xl p-10 text-center shadow-2xl animate-fade-in z-10">
+            <div class="w-24 h-24 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 text-brand text-4xl shadow-inner">
+                <i class="fas fa-play"></i>
+            </div>
+            <h2 class="text-3xl font-heading font-extrabold text-slate-800 mb-4">Hoàng Tú Uyên - Buổi 1</h2>
+            <p class="text-slate-500 mb-8 text-lg">
+                Các chủ đề luyện tập hôm nay bao gồm: <br>
+                <b>Shopping (Mua sắm), Travel (Du lịch), Movies (Phim ảnh).</b>
+            </p>
+            <button onclick="startApp()" class="px-8 py-4 bg-gradient-to-r from-brand to-rose-600 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-orange-500/50 hover:scale-105 transition-all">
+                Bắt đầu ngay <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        </div>
+
+        <!-- ===================================== -->
+        <!-- SECTION 1: SPEAKING -->
+        <!-- ===================================== -->
+        <div id="speakingSection" class="section-container hidden w-full max-w-6xl h-[85vh] md:h-[80vh] flex flex-col gap-4 animate-slide-in relative z-10">
+            
+            <!-- Progress Bar -->
+            <div class="flex items-center justify-between mb-2 px-2">
+                <span class="text-xs font-bold text-slate-500 uppercase">Tiến độ luyện tập</span>
+                <div class="w-full max-w-xs h-2 bg-slate-200 rounded-full ml-4 overflow-hidden">
+                    <div id="progressBar" class="h-full bg-brand transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <span id="progressText" class="text-xs font-bold text-brand ml-3">0/0</span>
+            </div>
+
+            <!-- Question Header Card -->
+            <div class="glass-panel p-6 rounded-2xl flex-shrink-0 shadow-sm border-t-4 border-brand">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <span id="topicBadge" class="inline-block px-3 py-1 bg-orange-100 text-brand text-xs font-bold rounded-full uppercase tracking-wider mb-2">Topic</span>
+                        <h2 id="questionText" class="text-2xl md:text-3xl font-heading font-bold text-slate-800">Loading...</h2>
+                    </div>
+                    <button onclick="speakQuestion()" class="p-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors tooltip" title="Nghe câu hỏi">
+                        <i class="fas fa-volume-high"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content Split View -->
+            <div class="flex flex-col md:flex-row gap-4 flex-grow overflow-hidden">
+                
+                <!-- Left: Hints (Scrollable) -->
+                <div class="md:w-5/12 glass-panel rounded-2xl flex flex-col overflow-hidden shadow-sm">
+                    <div class="p-4 bg-white/50 border-b border-white/50 flex justify-between items-center">
+                        <h3 class="font-bold text-slate-700 flex items-center gap-2">
+                            <i class="fas fa-lightbulb text-yellow-500"></i> Gợi ý & Từ vựng
+                        </h3>
+                    </div>
+                    <div id="hintContainer" class="p-5 overflow-y-auto custom-scroll hint-content flex-grow text-sm md:text-base">
+                        <!-- Hints injected here -->
+                    </div>
+                    <div id="vocabFooter" class="p-3 bg-slate-50 border-t border-slate-100 flex flex-wrap gap-2 min-h-[60px]">
+                        <!-- Vocab tags injected here -->
+                    </div>
+                </div>
+
+                <!-- Right: Interaction (Fixed) -->
+                <div class="md:w-7/12 glass-panel rounded-2xl flex flex-col relative shadow-sm overflow-hidden">
+                    <div class="absolute top-4 right-4 text-xs font-mono font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded z-10">
+                        <span id="timerDisplay">00:00</span>
+                    </div>
+
+                    <div class="p-4 bg-white/50 border-b border-white/50">
+                        <h3 class="font-bold text-slate-700 flex items-center gap-2">
+                            <i class="fas fa-pen-fancy text-brand"></i> Câu trả lời dự kiến (Transcript)
+                        </h3>
+                    </div>
+
+                    <div class="p-4 flex-grow flex flex-col gap-3">
+                        <textarea id="answerInput" class="flex-grow w-full p-4 rounded-xl border border-slate-200 bg-white/80 focus:ring-2 focus:ring-brand focus:border-transparent resize-none transition-all placeholder-slate-400 text-base" placeholder="Nhập câu trả lời dự kiến của bạn vào đây (hệ thống sẽ đối chiếu phát âm với văn bản này)..."></textarea>
+                        
+                        <!-- Subtitle & Pronunciation Check UI -->
+                        <div id="sttContainer" class="hidden px-6 py-3 bg-slate-800 text-white min-h-[80px] max-h-[120px] overflow-y-auto custom-scroll text-sm leading-relaxed border-t border-slate-700 rounded-lg">
+                            <div class="flex items-center gap-2 text-orange-400 mb-1 text-xs font-bold uppercase tracking-wider">
+                                <i class="fas fa-wave-square animate-pulse"></i> Đang nhận diện giọng nói...
+                            </div>
+                            <div id="sttText" class="italic text-slate-300">Hãy bắt đầu đọc/nói...</div>
+                        </div>
+
+                        <div id="pronunciationResult" class="hidden px-6 py-4 bg-orange-50 border border-orange-200 max-h-[150px] overflow-y-auto custom-scroll rounded-lg">
+                            <h4 class="text-xs font-bold text-orange-700 uppercase mb-2"><i class="fas fa-check-double mr-1"></i> Đánh giá phát âm</h4>
+                            <div id="pronunciationFeedback" class="text-sm text-slate-700 leading-relaxed bg-white p-3 rounded-lg border border-orange-200"></div>
+                            <p class="text-[10px] text-orange-600 mt-2 italic">*Từ màu đỏ bị gạch chân là từ bạn đọc sai hoặc thiếu so với văn bản đã nhập.</p>
+                        </div>
+
+                        <!-- Audio Player -->
+                        <div id="audioPlayerBox" class="hidden p-2 bg-slate-50 rounded-lg border border-slate-200 flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center">
+                                <i class="fas fa-microphone-lines"></i>
+                            </div>
+                            <audio id="audioPlayer" controls class="w-full h-8"></audio>
+                            <button onclick="deleteCurrentRecording()" class="text-slate-400 hover:text-red-500 transition-colors p-2 rounded tooltip" title="Xóa bản ghi"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="p-4 bg-white/80 border-t border-slate-100 grid grid-cols-2 gap-4">
+                        <button id="recordBtn" onclick="toggleRecording()" class="py-3 rounded-xl bg-slate-800 text-white font-bold hover:bg-slate-900 transition-all flex items-center justify-center gap-2 shadow-lg">
+                            <i class="fas fa-microphone"></i> <span id="recordBtnText">Ghi âm</span>
+                        </button>
+                        
+                        <div class="flex gap-2">
+                            <button onclick="changeSlide(-1)" id="prevBtn" class="flex-1 py-3 rounded-xl bg-white border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-all disabled:opacity-50">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <button onclick="changeSlide(1)" id="nextBtn" class="flex-[3] py-3 rounded-xl bg-brand text-white font-bold hover:bg-orange-700 transition-all shadow-lg shadow-brand/20">
+                                Tiếp theo <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================== -->
+        <!-- SECTION 2: FLASHCARDS -->
+        <!-- ===================================== -->
+        <div id="flashcardSection" class="section-container hidden w-full max-w-6xl h-[85vh] md:h-[80vh] flex flex-col items-center justify-center animate-slide-up relative z-10">
+            <div class="w-full max-w-md">
+                <div class="text-center mb-6">
+                    <h2 class="text-2xl font-heading font-bold text-slate-800">Flashcards</h2>
+                    <p class="text-slate-500 text-sm">Chạm vào thẻ để xem câu ví dụ & ý nghĩa</p>
+                </div>
+
+                <div class="relative w-full h-80 cursor-pointer group perspective" onclick="flipCard()">
+                    <div id="flashcard" class="flip-card w-full h-full shadow-2xl rounded-3xl">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-white">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Vocabulary</span>
+                                <h3 id="fcFront" class="text-3xl font-bold text-slate-800">Word</h3>
+                                <div class="mt-4 w-12 h-1 bg-brand rounded-full"></div>
+                            </div>
+                            <div class="flip-card-back">
+                                <span class="text-xs font-bold text-brand uppercase tracking-widest mb-2">Câu ví dụ</span>
+                                <p id="fcBack" class="text-lg text-orange-900 font-medium italic">"Example"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center gap-6 mt-8">
+                    <button onclick="changeFlashcard(-1)" class="w-12 h-12 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 shadow-md flex items-center justify-center transition-transform hover:-translate-x-1">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <span id="fcProgress" class="text-slate-400 font-mono font-bold">1 / 10</span>
+                    <button onclick="changeFlashcard(1)" class="w-12 h-12 rounded-full bg-brand text-white hover:bg-orange-700 shadow-lg shadow-orange-500/30 flex items-center justify-center transition-transform hover:translate-x-1">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================== -->
+        <!-- SECTION 3: QUIZ -->
+        <!-- ===================================== -->
+        <div id="quizSection" class="section-container hidden w-full max-w-6xl h-[85vh] md:h-[80vh] flex flex-col items-center justify-center animate-slide-up p-4 relative z-10">
+            <div class="glass-panel w-full max-w-2xl rounded-2xl p-6 md:p-10 shadow-xl">
+                <div class="flex justify-between items-center mb-8">
+                    <h2 class="text-xl font-heading font-bold text-slate-800"><i class="fas fa-pencil-alt text-brand mr-2"></i>Điền từ còn thiếu</h2>
+                    <span id="quizScore" class="px-3 py-1 bg-orange-100 text-orange-700 rounded-full font-bold text-sm">Điểm: 0</span>
+                </div>
+
+                <div id="quizContent" class="mb-8">
+                    <p class="text-lg md:text-2xl text-slate-700 leading-relaxed text-center font-medium" id="quizQuestion">
+                        Loading...
+                    </p>
+                </div>
+
+                <div id="quizOptions" class="grid grid-cols-2 gap-4"></div>
+
+                <div id="quizFeedback" class="mt-6 text-center hidden">
+                    <p class="text-lg font-bold mb-2" id="feedbackText"></p>
+                    <button onclick="nextQuiz()" class="px-6 py-2 bg-slate-800 text-white rounded-lg hover:bg-slate-900">Câu tiếp theo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================== -->
+        <!-- SECTION 4: VOICE MANAGER -->
+        <!-- ===================================== -->
+        <div id="voiceManagerSection" class="section-container hidden w-full max-w-6xl h-[85vh] md:h-[80vh] flex flex-col animate-slide-up relative z-10">
+            <div class="glass-panel w-full max-w-6xl mx-auto rounded-2xl p-6 flex flex-col h-full shadow-xl">
+                <div class="flex justify-between items-center mb-6 border-b border-slate-200 pb-4">
+                    <div>
+                        <h2 class="text-2xl font-heading font-bold text-slate-800">Kho lưu trữ Voice</h2>
+                        <p class="text-sm text-slate-500">Quản lý và tải xuống các bài nói đã ghi âm (Lưu cục bộ)</p>
+                    </div>
+                    <button onclick="downloadSelectedZips()" class="px-5 py-2.5 bg-brand text-white font-bold rounded-xl hover:bg-orange-700 shadow-md flex items-center gap-2 transition-all">
+                        <i class="fas fa-file-archive"></i> Tải file ZIP đã chọn
+                    </button>
+                </div>
+
+                <div class="overflow-x-auto flex-grow rounded-xl border border-slate-200 bg-white">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-50 text-slate-600 text-sm uppercase tracking-wider">
+                                <th class="p-4 border-b w-12 text-center"><input type="checkbox" id="selectAllCheckbox" class="custom-checkbox" onclick="toggleSelectAll()"></th>
+                                <th class="p-4 border-b">Câu hỏi (Chủ đề)</th>
+                                <th class="p-4 border-b w-48">Thời gian</th>
+                                <th class="p-4 border-b w-64">Phát lại</th>
+                                <th class="p-4 border-b w-24 text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="voiceTableBody" class="divide-y divide-slate-100"></tbody>
+                    </table>
+                </div>
+                <div id="emptyVoiceState" class="hidden flex-col items-center justify-center py-12 text-slate-400">
+                    <i class="fas fa-box-open text-5xl mb-4 text-slate-300"></i>
+                    <p>Chưa có bản ghi âm nào được lưu.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Screen Modal -->
+        <div id="endScreen" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex-col items-center justify-center p-4">
+            <div class="bg-white w-full max-w-lg rounded-3xl p-8 text-center shadow-2xl animate-fade-in relative">
+                <button onclick="document.getElementById('endScreen').classList.add('hidden'); document.getElementById('endScreen').classList.remove('flex');" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fas fa-times text-xl"></i></button>
+                
+                <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-6 text-brand text-3xl">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800 mb-2">Hoàn thành bài học!</h2>
+                <p class="text-slate-500 mb-6">Bạn đã đi qua tất cả các câu hỏi. Hãy kiểm tra lại file ghi âm ở mục Quản lý Voice.</p>
+                
+                <div class="flex flex-col gap-3">
+                    <button onclick="downloadWord()" class="w-full py-3 bg-rose-50 text-rose-700 font-bold rounded-xl hover:bg-rose-100 border border-rose-200 flex items-center justify-center gap-2">
+                        <i class="fas fa-file-word"></i> Tải bản Word (Đáp án text)
+                    </button>
+                    <button onclick="switchMode('voiceManager'); document.getElementById('endScreen').classList.add('hidden'); document.getElementById('endScreen').classList.remove('flex');" class="w-full py-3 bg-brand text-white font-bold rounded-xl hover:bg-orange-700 shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2">
+                        <i class="fas fa-tasks"></i> Quản lý Voice (Tải Audio)
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================== -->
+        <!-- MAP NAVIGATOR OVERLAY -->
+        <!-- ===================================== -->
+        <button onclick="toggleMap()" class="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-brand to-accent text-white rounded-full shadow-[0_10px_25px_rgba(234,88,12,0.5)] flex items-center justify-center text-2xl hover:scale-110 transition-transform z-40 ring-4 ring-white group">
+            <i class="fas fa-map-marked-alt"></i>
+            <span class="absolute right-full mr-4 bg-slate-800 text-white text-xs font-bold px-3 py-1.5 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg pointer-events-none">Bản đồ Tiến độ</span>
+        </button>
+
+        <div id="mapOverlay" onclick="toggleMap()" class="fixed inset-0 bg-slate-900/30 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-500"></div>
+        <div id="gameMapSidebar" class="fixed inset-y-0 right-0 w-80 max-w-[85vw] bg-slate-50/95 backdrop-blur-2xl shadow-[-10px_0_40px_rgba(0,0,0,0.15)] z-50 transform translate-x-full transition-transform duration-500 ease-in-out border-l border-white flex flex-col">
+            <div class="p-6 border-b border-white/50 flex justify-between items-center bg-white/50 shrink-0 shadow-sm relative z-20">
+                <h2 class="text-xl font-heading font-extrabold text-slate-800 flex items-center gap-2">
+                    <i class="fas fa-route text-brand text-2xl"></i> Hành Trình
+                </h2>
+                <button onclick="toggleMap()" class="w-8 h-8 bg-white text-slate-500 hover:text-highlight rounded-full shadow flex items-center justify-center transition-transform hover:rotate-90">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="flex-grow overflow-y-auto custom-scroll relative px-6 py-10" id="mapScrollContainer">
+                <div class="absolute left-1/2 top-10 bottom-10 w-1.5 bg-slate-200 -translate-x-1/2 rounded-full shadow-inner"></div>
+                <div id="mapProgressLine" class="absolute left-1/2 top-10 w-1.5 bg-gradient-to-b from-brand to-accent -translate-x-1/2 rounded-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(234,88,12,0.5)]" style="height: 0%;"></div>
+                <div id="mapNodesContainer" class="flex flex-col items-center gap-12 relative z-10 pb-10"></div>
+            </div>
+        </div>
+
+    </main>
+
+<script>
+    // ==========================================
+    // 1. DATA DEFINITION
+    // ==========================================
+    const rawData = [
+        // --- TOPIC 1: SHOPPING ---
+        {
+            topic: "Shopping",
+            questions: [
+                {
+                    text: "How often do you go shopping?",
+                    hint: `
+                        <ul>
+                            <li>I am <strong>fond of / a big fan of</strong> shopping. I am a <strong>slave of fashion</strong>.</li>
+                            <li><strong>Where & When:</strong> At shopping malls with my mom at the weekend.</li>
+                            <li><strong>Items:</strong> I purchase new clothes and cosmetics.</li>
+                            <li><strong>Why:</strong> I prefer shopping <strong>in person</strong> since I can touch and try on the clothes to make sure they fit me well.</li>
+                            <li><strong>Hobby:</strong> It helps me <strong>disconnect from daily routine</strong> and <strong>refresh my mind</strong>.</li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "slave of fashion", meaning: "nô lệ của thời trang (rất đam mê thời trang)" },
+                        { word: "in person", meaning: "trực tiếp (tận nơi)" },
+                        { word: "disconnect from daily routine", meaning: "thoát khỏi nhịp sống thường ngày" },
+                        { word: "refresh my mind", meaning: "làm mới tâm trí / thư giãn" }
+                    ]
+                },
+                {
+                    text: "What kind of things do you usually buy online?",
+                    hint: `
+                        <ul>
+                            <li>I buy a lot of products online.</li>
+                            <li><strong>Items:</strong> Clothes or <strong>regular items</strong> like washing-powder.</li>
+                            <li><strong>Why:</strong> I prefer buying online since it is more convenient compared to traditional <strong>brick-and-mortar</strong> stores.</li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "regular items", meaning: "những món đồ thông thường" },
+                        { word: "brick-and-mortar", meaning: "cửa hàng thực tế (có mặt bằng, truyền thống)" }
+                    ]
+                },
+                {
+                    text: "Do you prefer large malls or small local shops? Why?",
+                    hint: `
+                        <ul>
+                            <li>I prefer large malls for several reasons.</li>
+                            <li><strong>1. Options:</strong> More options to choose. A variety of items from different brands, prices, sizes. I can always find what I need.</li>
+                            <li><strong>2. Discounts:</strong> Provide a lot of discounts. They launch <strong>discount campaigns</strong> for special occasions (offer products at <strong>half price</strong>).</li>
+                            <li><strong>3. Atmosphere:</strong> The atmosphere is <strong>hustle and dynamic</strong> with many events.</li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "discount campaigns", meaning: "các chiến dịch giảm giá" },
+                        { word: "hustle and dynamic", meaning: "nhộn nhịp và năng động" },
+                        { word: "half price", meaning: "nửa giá" }
+                    ]
+                }
+            ]
+        },
+        // --- TOPIC 2: TRAVEL ---
+        {
+            topic: "Travel",
+            questions: [
+                {
+                    text: "When was the last time you went on a vacation? What did you prepare?",
+                    hint: `
+                        <ul>
+                            <li>I am a big fan of traveling. I love to enjoy trips with my family.</li>
+                            <li>We often take a short trip to other cities in the summer, like Da Nang beach.</li>
+                            <li><strong>Preparation:</strong>
+                                <br>1. I pack my cosmetics, clothes into my luggage.
+                                <br>2. I pack some instant noodles since I may not be used to the <strong>local cuisines</strong>.
+                                <br>3. Have a quick check on my documents.
+                                <br>4. Search for famous destinations on the Internet (stunning places, <strong>delicate restaurants</strong>).
+                            </li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "local cuisines", meaning: "ẩm thực địa phương" },
+                        { word: "delicate restaurants", meaning: "nhà hàng tinh tế / sang trọng" }
+                    ]
+                },
+                {
+                    text: "Tell me about the weather, nature and activities on the beach.",
+                    hint: `
+                        <h4>Weather & Activities:</h4>
+                        <ul>
+                            <li>The weather is very nice (hot and sunny in the summer).</li>
+                            <li>I involve in outdoor activities: go swimming, sit on the towel, have a <strong>sunbath</strong>, watch the waves.</li>
+                            <li>During windy days, I go <strong>windsurfing</strong> or fly a kite.</li>
+                        </ul>
+                        <h4>Nature:</h4>
+                        <ul>
+                            <li>Nature is full of beauty (blue clean water, white sandy beach turning golden under the sunlight, greeny coconut trees, islands, caves).</li>
+                            <li>It makes me <strong>cannot take my eyes off</strong>. (It is stunning/breath-taking/<strong>magnificent</strong>).</li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "sunbath", meaning: "tắm nắng" },
+                        { word: "windsurfing", meaning: "lướt ván buồm" },
+                        { word: "cannot take my eyes off", meaning: "không thể rời mắt" },
+                        { word: "magnificent", meaning: "lộng lẫy / tráng lệ" }
+                    ]
+                },
+                {
+                    text: "How do you feel about the local people and facilities?",
+                    hint: `
+                        <h4>Local People:</h4>
+                        <ul>
+                            <li>The local residents are <strong>hospitable</strong> and cozy.</li>
+                            <li>They introduce tourists to <strong>staples</strong> and cultural festivals -> makes the trip enjoyable.</li>
+                            <li>If you ask them for history, you can <strong>gain an insight</strong> on the history. It provides practical experiences more interesting than reading a book.</li>
+                        </ul>
+                        <h4>Facilities:</h4>
+                        <ul>
+                            <li>Da Nang facilities are well-developed with plenty of convenient buildings like shopping malls, <strong>amusement parks</strong>...</li>
+                            <li>It offers me the convenience to find what I need.</li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "hospitable", meaning: "hiếu khách" },
+                        { word: "staples", meaning: "những món ăn chính / đặc sản" },
+                        { word: "gain an insight", meaning: "có được cái nhìn sâu sắc / hiểu rõ hơn" },
+                        { word: "amusement parks", meaning: "công viên giải trí" }
+                    ]
+                }
+            ]
+        },
+        // --- TOPIC 3: MOVIES ---
+        {
+            topic: "Movies",
+            questions: [
+                {
+                    text: "How often do you go to the cinema? What kind of movies do you like?",
+                    hint: `
+                        <ul>
+                            <li>I am a big fan of movies. I watch various <strong>genres</strong> of movies after school time on Netflix.</li>
+                            <li><strong>Comedy movies:</strong> The plots always keep me <strong>at the edge of my seat</strong> (The plot is so <strong>intriguing</strong> that I cannot take my eyes off).</li>
+                            <li><strong>Family drama:</strong> Movies often <strong>convey</strong> meaningful messages about relationship and family. They teach me to <strong>appreciate</strong> and take responsibility.</li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "genres", meaning: "thể loại" },
+                        { word: "at the edge of my seat", meaning: "hồi hộp, chăm chú (như ngồi ở mép ghế)" },
+                        { word: "intriguing", meaning: "hấp dẫn / kích thích sự tò mò" },
+                        { word: "convey", meaning: "truyền tải" },
+                        { word: "appreciate", meaning: "trân trọng / đánh giá cao" }
+                    ]
+                },
+                {
+                    text: "Do you think watching movies at home is better than the theater? Why?",
+                    hint: `
+                        <h4>Prefer Theater:</h4>
+                        <ul>
+                            <li>It enhances the <strong>cinematic experiences</strong> (larger <strong>high-resolution</strong> screen and <strong>vivid audio</strong>).</li>
+                            <li>Results in an <strong>incomparable</strong> experience.</li>
+                            <li>Love to go with friends to discuss the movie plots.</li>
+                        </ul>
+                        <h4>Prefer Home:</h4>
+                        <ul>
+                            <li>Provides a private room to do anything.</li>
+                            <li>Can find movies on the Internet for free (no tickets).</li>
+                            <li>Time-saving (do not have to move/travel).</li>
+                        </ul>
+                    `,
+                    vocab: [
+                        { word: "cinematic experiences", meaning: "trải nghiệm điện ảnh" },
+                        { word: "high-resolution", meaning: "độ phân giải cao" },
+                        { word: "vivid audio", meaning: "âm thanh sống động" },
+                        { word: "incomparable", meaning: "không thể sánh bằng" }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    // Drill Sentences auto generated from Vocab
+    const drillSentences = [
+        { sentence: "I am a slave of fashion.", word: "slave of fashion" },
+        { sentence: "I prefer shopping in person.", word: "in person" },
+        { sentence: "It helps me disconnect from daily routine.", word: "disconnect from daily routine" },
+        { sentence: "It helps refresh my mind.", word: "refresh my mind" },
+        { sentence: "I buy regular items online.", word: "regular items" },
+        { sentence: "Better than brick-and-mortar stores.", word: "brick-and-mortar" },
+        { sentence: "They launch discount campaigns.", word: "discount campaigns" },
+        { sentence: "The atmosphere is hustle and dynamic.", word: "hustle and dynamic" },
+        { sentence: "Products are at half price.", word: "half price" },
+        { sentence: "I try the local cuisines.", word: "local cuisines" },
+        { sentence: "We eat at delicate restaurants.", word: "delicate restaurants" },
+        { sentence: "I love to have a sunbath.", word: "sunbath" },
+        { sentence: "I go windsurfing.", word: "windsurfing" },
+        { sentence: "I cannot take my eyes off it.", word: "cannot take my eyes off" },
+        { sentence: "The view is magnificent.", word: "magnificent" },
+        { sentence: "The locals are very hospitable.", word: "hospitable" },
+        { sentence: "They introduce tourists to staples.", word: "staples" },
+        { sentence: "I can gain an insight on history.", word: "gain an insight" },
+        { sentence: "We visit amusement parks.", word: "amusement parks" },
+        { sentence: "I watch various genres.", word: "genres" },
+        { sentence: "Keeps me at the edge of my seat.", word: "at the edge of my seat" },
+        { sentence: "The plot is very intriguing.", word: "intriguing" },
+        { sentence: "Movies convey messages.", word: "convey" },
+        { sentence: "Teach me to appreciate family.", word: "appreciate" },
+        { sentence: "It enhances cinematic experiences.", word: "cinematic experiences" },
+        { sentence: "It has a high-resolution screen.", word: "high-resolution" },
+        { sentence: "It offers vivid audio.", word: "vivid audio" },
+        { sentence: "It is an incomparable experience.", word: "incomparable" }
+    ];
+
+    // ==========================================
+    // 2. INDEXED DB WRAPPER (For saving Audio Blobs permanently)
+    // ==========================================
+    const DB_NAME = "TuUyenApp_DB_v1";
+    const STORE_NAME = "recordings";
+    let db;
+
+    function initDB() {
+        return new Promise((resolve, reject) => {
+            const request = indexedDB.open(DB_NAME, 1);
+            request.onupgradeneeded = (event) => {
+                db = event.target.result;
+                if (!db.objectStoreNames.contains(STORE_NAME)) {
+                    db.createObjectStore(STORE_NAME, { keyPath: "id" });
+                }
+            };
+            request.onsuccess = (event) => {
+                db = event.target.result;
+                resolve(db);
+            };
+            request.onerror = (event) => reject(event.target.error);
+        });
+    }
+
+    async function saveRecordingToDB(id, audioBlob, text, durationSec) {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction([STORE_NAME], "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            const data = { id: id, blob: audioBlob, text: text, duration: durationSec, timestamp: new Date().getTime() };
+            const request = store.put(data);
+            request.onsuccess = () => resolve();
+            request.onerror = (e) => reject(e);
+        });
+    }
+
+    async function getRecordingFromDB(id) {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.get(id);
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = (e) => reject(e);
+        });
+    }
+
+    async function getAllRecordingsFromDB() {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction([STORE_NAME], "readonly");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.getAll();
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = (e) => reject(e);
+        });
+    }
+
+    async function deleteRecordingFromDB(id) {
+        return new Promise((resolve, reject) => {
+            const transaction = db.transaction([STORE_NAME], "readwrite");
+            const store = transaction.objectStore(STORE_NAME);
+            const request = store.delete(id);
+            request.onsuccess = () => resolve();
+            request.onerror = (e) => reject(e);
+        });
+    }
+
+    // ==========================================
+    // 3. APP STATE & SPEECH RECOGNITION
+    // ==========================================
+    let appState = {
+        mode: 'speaking', 
+        questions: [],
+        currentIndex: 0,
+        recording: false,
+        mediaRecorder: null,
+        audioChunks: [],
+        recordingSeconds: 0,
+        timerInterval: null,
+        recognition: null,
+        finalTranscript: '',
+        interimTranscript: '',
+        flashcards: [],
+        flashcardIndex: 0,
+        isFlipped: false,
+        quizzes: [],
+        quizIndex: 0,
+        score: 0
+    };
+
+    const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRecognitionAPI) {
+        appState.recognition = new SpeechRecognitionAPI();
+        appState.recognition.continuous = true;
+        appState.recognition.interimResults = true;
+        appState.recognition.lang = 'en-US';
+
+        appState.recognition.onresult = (event) => {
+            let interim = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    appState.finalTranscript += event.results[i][0].transcript;
+                } else {
+                    interim += event.results[i][0].transcript;
+                }
+            }
+            const sttTextEl = document.getElementById('sttText');
+            if(sttTextEl) sttTextEl.innerText = appState.finalTranscript + ' ' + interim;
+        };
+
+        appState.recognition.onerror = (e) => console.log("STT Error:", e.error);
+    }
+
+    // ==========================================
+    // 4. MAIN INIT & BUILD DATA
+    // ==========================================
+    async function init() {
+        try { await initDB(); } catch (e) { console.error("Lỗi DB:", e); }
+
+        let qId = 0;
+        let speakingData = [];
+        rawData.forEach(test => {
+            test.questions.forEach(q => {
+                speakingData.push({
+                    id: qId++,
+                    topic: test.topic, 
+                    text: q.text,
+                    hint: q.hint,
+                    vocab: q.vocab || [],
+                    userText: ""
+                });
+            });
+        });
+
+        appState.questions = speakingData;
+
+        generateFlashcards();
+        generateQuiz();
+        renderSlide(0);
+    }
+
+    function switchMode(mode) {
+        appState.mode = mode;
+        document.querySelectorAll('.section-container').forEach(el => el.classList.add('hidden'));
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.classList.remove('active-mode', 'bg-orange-50', 'text-brand');
+            btn.classList.add('text-slate-500');
+            if(btn.dataset.mode === mode) {
+                btn.classList.add('active-mode', 'bg-orange-50', 'text-brand');
+                btn.classList.remove('text-slate-500');
+            }
+        });
+        const section = document.getElementById(`${mode}Section`);
+        if(section) section.classList.remove('hidden');
+
+        if(mode === 'voiceManager') {
+            loadVoiceManager();
+        }
+    }
+
+    function startApp() {
+        const startScreen = document.getElementById('startScreen');
+        if(startScreen) startScreen.classList.add('hidden');
+        switchMode('speaking');
+    }
+
+    // ==========================================
+    // 5. SPEAKING MODE LOGIC
+    // ==========================================
+    async function renderSlide(index) {
+        if (index < 0 || index >= appState.questions.length) return;
+        
+        // Save current input to memory
+        if(appState.questions[appState.currentIndex]) {
+            const answerInput = document.getElementById('answerInput');
+            if(answerInput) appState.questions[appState.currentIndex].userText = answerInput.value;
+        }
+
+        resetRecordingUI();
+        appState.currentIndex = index;
+        const q = appState.questions[index];
+
+        const topicBadge = document.getElementById('topicBadge');
+        const questionText = document.getElementById('questionText');
+        const hintContainer = document.getElementById('hintContainer');
+        const answerInput = document.getElementById('answerInput');
+        
+        if(topicBadge) topicBadge.innerText = `${q.topic}`;
+        if(questionText) questionText.innerText = q.text;
+        if(hintContainer) hintContainer.innerHTML = q.hint;
+        if(answerInput) answerInput.value = q.userText;
+
+        // Render Vocab Tooltips
+        const vocabContainer = document.getElementById('vocabFooter');
+        if (vocabContainer) {
+            vocabContainer.innerHTML = '';
+            q.vocab.forEach(v => {
+                const wrapper = document.createElement('div');
+                wrapper.className = "group relative inline-block";
+
+                const span = document.createElement('span');
+                span.className = "px-3 py-1 bg-white border border-orange-200 rounded-full text-xs font-bold text-slate-500 group-hover:text-brand group-hover:border-brand cursor-default transition-colors inline-block";
+                span.innerText = v.word;
+                wrapper.appendChild(span);
+
+                if (v.meaning) {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = "opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-slate-800 text-white text-xs rounded shadow-lg whitespace-nowrap z-50 pointer-events-none after:content-[''] after:absolute after:top-full after:left-1/2 after:-translate-x-1/2 after:border-4 after:border-transparent after:border-t-slate-800";
+                    tooltip.innerText = v.meaning;
+                    wrapper.appendChild(tooltip);
+                }
+                vocabContainer.appendChild(wrapper);
+            });
+        }
+
+        // Load data from DB if exists
+        try {
+            const savedData = await getRecordingFromDB(q.id);
+            if(savedData && savedData.blob) {
+                setupAudioPlayer(savedData.blob);
+                if(savedData.text && savedData.text !== "" && answerInput) {
+                    answerInput.value = savedData.text;
+                }
+            }
+        } catch (e) { console.error("Lỗi lấy DB:", e); }
+
+        const prevBtn = document.getElementById('prevBtn');
+        if(prevBtn) prevBtn.disabled = (index === 0);
+        
+        const nextBtn = document.getElementById('nextBtn');
+        if(nextBtn) {
+            if (index === appState.questions.length - 1) {
+                nextBtn.innerHTML = 'Kết thúc <i class="fas fa-flag-checkered ml-2"></i>';
+                nextBtn.classList.replace('bg-brand', 'bg-accent');
+            } else {
+                nextBtn.innerHTML = 'Tiếp <i class="fas fa-arrow-right ml-2"></i>';
+                nextBtn.classList.replace('bg-accent', 'bg-brand');
+            }
+        }
+        
+        updateProgress();
+        updateGameMap();
+    }
+
+    function changeSlide(dir) {
+        const newIndex = appState.currentIndex + dir;
+        if(newIndex >= appState.questions.length) {
+            const endScreen = document.getElementById('endScreen');
+            if (endScreen) {
+                endScreen.classList.remove('hidden');
+                endScreen.classList.add('flex');
+            }
+        } else {
+            renderSlide(newIndex);
+        }
+    }
+
+    function updateProgress() {
+        const pct = ((appState.currentIndex + 1) / appState.questions.length) * 100;
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        if(progressBar) progressBar.style.width = `${pct}%`;
+        if(progressText) progressText.innerText = `${appState.currentIndex + 1}/${appState.questions.length}`;
+    }
+
+    // ==========================================
+    // GAME MAP NAVIGATOR
+    // ==========================================
+    let isMapOpen = false;
+    
+    function toggleMap() {
+        const sidebar = document.getElementById('gameMapSidebar');
+        const overlay = document.getElementById('mapOverlay');
+        if(!sidebar || !overlay) return;
+
+        isMapOpen = !isMapOpen;
+        
+        if(isMapOpen) {
+            sidebar.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+            updateGameMap();
+        } else {
+            sidebar.classList.add('translate-x-full');
+            overlay.classList.add('opacity-0');
+            setTimeout(() => overlay.classList.add('hidden'), 500);
+        }
+    }
+
+    function updateGameMap() {
+        const container = document.getElementById('mapNodesContainer');
+        if(!container) return;
+        
+        container.innerHTML = '';
+        const total = appState.questions.length;
+        
+        appState.questions.forEach((q, i) => {
+            const isCompleted = (q.audioBlob !== null) || (q.userText && q.userText.trim() !== "");
+            const isActive = i === appState.currentIndex;
+            
+            // Zigzag offset: alternate left and right
+            const offset = i % 2 === 0 ? '-translate-x-8' : 'translate-x-8';
+            const tooltipPos = i % 2 === 0 ? 'left-full ml-6' : 'right-full mr-6';
+            
+            let bgClass = 'bg-white border-4 border-slate-200 text-slate-400';
+            let icon = i + 1;
+            
+            if (isActive) {
+                bgClass = 'bg-gradient-to-br from-brand to-accent text-white ring-4 ring-orange-200 scale-125 shadow-lg shadow-orange-500/40 z-20';
+                icon = '<i class="fas fa-dot-circle"></i>';
+            } else if (isCompleted || i < appState.currentIndex) {
+                bgClass = 'bg-green-500 border-4 border-green-200 text-white shadow-md z-10';
+                icon = '<i class="fas fa-check"></i>';
+            }
+
+            // Character jumping element
+            const characterHtml = isActive ? `<div class="absolute -top-8 -right-6 text-4xl animate-bounce drop-shadow-xl z-50 transition-all duration-300">🏃‍♂️</div>` : '';
+
+            const nodeHtml = `
+                <div class="relative group cursor-pointer" onclick="changeSlideTo(${i})">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-all duration-500 transform ${offset} ${bgClass}">
+                        ${icon}
+                    </div>
+                    ${characterHtml}
+                    <!-- Tooltip -->
+                    <div class="absolute top-1/2 -translate-y-1/2 ${tooltipPos} w-max max-w-[160px] px-3 py-2 bg-white text-slate-700 text-xs font-bold rounded-xl shadow-lg border border-slate-100 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-30">
+                        Level ${i+1}:<br/><span class="text-brand font-medium truncate block">${q.topic}</span>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += nodeHtml;
+        });
+
+        // Update progress line height
+        const progressLine = document.getElementById('mapProgressLine');
+        if(progressLine && total > 1) {
+            const percent = (appState.currentIndex / (total - 1)) * 100;
+            progressLine.style.height = `calc(${percent}% + 1rem)`;
+        }
+
+        // Auto scroll to active node in the sidebar
+        setTimeout(() => {
+            const activeNode = container.children[appState.currentIndex];
+            if(activeNode) {
+                activeNode.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 300);
+    }
+
+    function changeSlideTo(idx) {
+        if(appState.questions[appState.currentIndex]) {
+            const answerInputEl = document.getElementById('answerInput');
+            if(answerInputEl) appState.questions[appState.currentIndex].userText = answerInputEl.value;
+        }
+        renderSlide(idx);
+        if(window.innerWidth < 768 && isMapOpen) {
+            toggleMap();
+        }
+    }
+
+    async function toggleRecording() {
+        const btn = document.getElementById('recordBtn');
+        
+        if (!appState.recording) {
+            // Start Recording
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                appState.mediaRecorder = new MediaRecorder(stream);
+                appState.audioChunks = [];
+                appState.recordingSeconds = 0;
+                
+                // STT Reset
+                appState.finalTranscript = '';
+                const sttTextEl = document.getElementById('sttText');
+                const sttContainer = document.getElementById('sttContainer');
+                const pronunciationResult = document.getElementById('pronunciationResult');
+                
+                if(sttTextEl) sttTextEl.innerText = 'Hãy bắt đầu nói...';
+                if(sttContainer) sttContainer.classList.remove('hidden');
+                if(pronunciationResult) pronunciationResult.classList.add('hidden');
+                
+                if(appState.recognition) appState.recognition.start();
+
+                appState.mediaRecorder.ondataavailable = e => appState.audioChunks.push(e.data);
+                
+                appState.mediaRecorder.onstop = async () => {
+                    const blob = new Blob(appState.audioChunks, { type: 'audio/webm' });
+                    const qId = appState.questions[appState.currentIndex].id;
+                    const answerInput = document.getElementById('answerInput');
+                    const expectedText = answerInput ? answerInput.value : '';
+                    const duration = appState.recordingSeconds;
+
+                    // Stop STT
+                    if(appState.recognition) appState.recognition.stop();
+                    if(sttContainer) sttContainer.classList.add('hidden');
+
+                    // Check pronunciation
+                    checkPronunciation(expectedText, appState.finalTranscript);
+
+                    // Save to DB
+                    await saveRecordingToDB(qId, blob, expectedText, duration);
+                    setupAudioPlayer(blob);
+                    
+                    stream.getTracks().forEach(track => track.stop());
+                    updateGameMap();
+                };
+
+                appState.mediaRecorder.start();
+                appState.recording = true;
+                
+                if(btn) {
+                    btn.classList.add('bg-highlight', 'recording-pulse');
+                    btn.classList.remove('bg-slate-800');
+                }
+                const recordBtnText = document.getElementById('recordBtnText');
+                if(recordBtnText) recordBtnText.innerText = 'Dừng ghi âm';
+                startTimer();
+
+            } catch (err) { alert("Không thể truy cập Microphone!"); }
+        } else {
+            // Stop Recording
+            appState.mediaRecorder.stop();
+            appState.recording = false;
+            
+            if(btn) {
+                btn.classList.remove('bg-highlight', 'recording-pulse');
+                btn.classList.add('bg-slate-800');
+            }
+            const recordBtnText = document.getElementById('recordBtnText');
+            if(recordBtnText) recordBtnText.innerText = 'Ghi âm lại';
+            stopTimer();
+        }
+    }
+
+    // Pronunciation check algorithm
+    function checkPronunciation(expected, actual) {
+        const resultContainer = document.getElementById('pronunciationResult');
+        const feedbackEl = document.getElementById('pronunciationFeedback');
+        
+        if(!expected || expected.trim() === "") {
+            if(resultContainer) resultContainer.classList.add('hidden');
+            return;
+        }
+
+        // Clean arrays
+        let expWords = expected.split(/[\s,.\?!]+/);
+        let actualStr = actual.toLowerCase();
+
+        let html = '';
+        expWords.forEach(w => {
+            if(!w) return;
+            let cleanW = w.toLowerCase().replace(/[^a-z0-9]/gi, '');
+            if(cleanW && !actualStr.includes(cleanW)) {
+                html += `<span class="underline decoration-red-500 decoration-2 text-red-500 font-semibold mx-1" title="Bạn có thể đã đọc sai hoặc bỏ sót từ này">${w}</span>`;
+            } else {
+                html += `<span class="text-green-600 mx-1">${w}</span>`;
+            }
+        });
+
+        if(feedbackEl) feedbackEl.innerHTML = html;
+        if(resultContainer) resultContainer.classList.remove('hidden');
+    }
+
+    function resetRecordingUI() {
+        stopTimer();
+        const timerDisplay = document.getElementById('timerDisplay');
+        const audioPlayerBox = document.getElementById('audioPlayerBox');
+        const audioPlayer = document.getElementById('audioPlayer');
+        const sttContainer = document.getElementById('sttContainer');
+        const pronunciationResult = document.getElementById('pronunciationResult');
+        const btn = document.getElementById('recordBtn');
+        const recordBtnText = document.getElementById('recordBtnText');
+        
+        if(timerDisplay) timerDisplay.innerText = "00:00";
+        if(audioPlayerBox) audioPlayerBox.classList.add('hidden');
+        if(audioPlayer) audioPlayer.src = "";
+        if(sttContainer) sttContainer.classList.add('hidden');
+        if(pronunciationResult) pronunciationResult.classList.add('hidden');
+        
+        if(btn) {
+            btn.classList.remove('bg-highlight', 'recording-pulse');
+            btn.classList.add('bg-slate-800');
+        }
+        if(recordBtnText) recordBtnText.innerText = 'Ghi âm';
+    }
+
+    function setupAudioPlayer(blob) {
+        const url = URL.createObjectURL(blob);
+        const audioPlayer = document.getElementById('audioPlayer');
+        const audioPlayerBox = document.getElementById('audioPlayerBox');
+        if(audioPlayer) audioPlayer.src = url;
+        if(audioPlayerBox) audioPlayerBox.classList.remove('hidden');
+    }
+
+    async function deleteCurrentRecording() {
+        if(confirm("Xóa bản ghi âm hiện tại vĩnh viễn?")) {
+            const id = appState.questions[appState.currentIndex].id;
+            await deleteRecordingFromDB(id);
+            resetRecordingUI();
+            updateGameMap();
+        }
+    }
+
+    function startTimer() {
+        appState.recordingSeconds = 0;
+        const timerDisplay = document.getElementById('timerDisplay');
+        if(timerDisplay) {
+            timerDisplay.innerText = "00:00";
+            timerDisplay.classList.add('text-brand');
+        }
+        appState.timerInterval = setInterval(() => {
+            appState.recordingSeconds++;
+            const min = Math.floor(appState.recordingSeconds / 60).toString().padStart(2, '0');
+            const s = (appState.recordingSeconds % 60).toString().padStart(2, '0');
+            if(timerDisplay) timerDisplay.innerText = `${min}:${s}`;
+        }, 1000);
+    }
+    
+    function stopTimer() { 
+        clearInterval(appState.timerInterval); 
+        const timerDisplay = document.getElementById('timerDisplay');
+        if(timerDisplay) timerDisplay.classList.remove('text-brand');
+    }
+    
+    function speakQuestion() {
+        const text = appState.questions[appState.currentIndex].text;
+        window.speechSynthesis.cancel();
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'en-US';
+        u.rate = 0.9;
+        window.speechSynthesis.speak(u);
+    }
+
+    // ==========================================
+    // 6. VOICE MANAGER (CRUD)
+    // ==========================================
+    async function loadVoiceManager() {
+        const tbody = document.getElementById('voiceTableBody');
+        const emptyState = document.getElementById('emptyVoiceState');
+        if(!tbody || !emptyState) return;
+        
+        tbody.innerHTML = '';
+
+        try {
+            const allRecs = await getAllRecordingsFromDB();
+            if(!allRecs || allRecs.length === 0) {
+                emptyState.classList.remove('hidden');
+                emptyState.classList.add('flex');
+                return;
+            }
+            
+            emptyState.classList.add('hidden');
+            emptyState.classList.remove('flex');
+
+            allRecs.forEach(rec => {
+                // Find matching question
+                const q = appState.questions.find(x => x.id === rec.id);
+                if(!q) return;
+
+                const dateStr = new Date(rec.timestamp).toLocaleString('vi-VN', {hour: '2-digit', minute:'2-digit', day: '2-digit', month: '2-digit'});
+                const url = URL.createObjectURL(rec.blob);
+                const durationFmt = rec.duration ? `${Math.floor(rec.duration/60).toString().padStart(2,'0')}:${(rec.duration%60).toString().padStart(2,'0')}` : '00:00';
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-50 transition-colors";
+                tr.innerHTML = `
+                    <td class="p-4 border-b text-center">
+                        <input type="checkbox" class="custom-checkbox voice-checkbox" value="${rec.id}">
+                    </td>
+                    <td class="p-4 border-b">
+                        <div class="font-bold text-slate-800 text-sm mb-1">${q.topic}</div>
+                        <div class="text-xs text-slate-500 line-clamp-1" title="${q.text}">${q.text}</div>
+                    </td>
+                    <td class="p-4 border-b text-sm text-slate-600">
+                        <div><i class="far fa-clock mr-1"></i> ${dateStr}</div>
+                        <div class="text-xs text-slate-400 mt-1">Độ dài: ${durationFmt}</div>
+                    </td>
+                    <td class="p-4 border-b">
+                        <audio controls src="${url}" class="h-8 w-full max-w-[200px]"></audio>
+                    </td>
+                    <td class="p-4 border-b text-center">
+                        <button onclick="editVoice(${rec.id})" class="p-2 text-brand hover:bg-orange-50 rounded mr-1 tooltip" title="Tới câu hỏi này"><i class="fas fa-edit"></i></button>
+                        <button onclick="deleteVoiceRow(${rec.id})" class="p-2 text-red-500 hover:bg-red-50 rounded tooltip" title="Xóa vĩnh viễn"><i class="fas fa-trash"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+        } catch(e) { console.error("Lỗi lấy danh sách Voice", e); }
+    }
+
+    function toggleSelectAll() {
+        const selectAllCheckbox = document.getElementById('selectAllCheckbox');
+        if(!selectAllCheckbox) return;
+        const selectAll = selectAllCheckbox.checked;
+        const boxes = document.querySelectorAll('.voice-checkbox');
+        boxes.forEach(b => b.checked = selectAll);
+    }
+
+    function editVoice(id) {
+        const index = appState.questions.findIndex(q => q.id === id);
+        if(index !== -1) {
+            switchMode('speaking');
+            renderSlide(index);
+        }
+    }
+
+    async function deleteVoiceRow(id) {
+        if(confirm("Bạn có chắc chắn muốn xóa vĩnh viễn ghi âm này?")) {
+            await deleteRecordingFromDB(id);
+            loadVoiceManager(); // reload
+        }
+    }
+
+    async function downloadSelectedZips() {
+        const boxes = document.querySelectorAll('.voice-checkbox:checked');
+        if(boxes.length === 0) return alert("Vui lòng chọn ít nhất 1 file để tải xuống!");
+
+        const zip = new JSZip();
+        let added = 0;
+
+        for (const box of boxes) {
+            const id = parseInt(box.value);
+            const rec = await getRecordingFromDB(id);
+            const q = appState.questions.find(x => x.id === id);
+            if(rec && q) {
+                const cleanTopic = q.topic.replace(/[^a-zA-Z0-9]/g, '_');
+                zip.file(`Q${id}_${cleanTopic}.webm`, rec.blob);
+                added++;
+            }
+        }
+
+        if(added > 0) {
+            const content = await zip.generateAsync({type:"blob"});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(content);
+            a.download = "TuUyen_Voices.zip";
+            a.click();
+        }
+    }
+
+    // ==========================================
+    // 7. FLASHCARDS & QUIZ LOGIC
+    // ==========================================
+    function generateFlashcards() {
+        let uniqueMap = new Map();
+        drillSentences.forEach(item => {
+            if(!uniqueMap.has(item.word)) {
+                let meaning = "";
+                appState.questions.forEach(q => {
+                    q.vocab.forEach(v => {
+                        if(v.word.toLowerCase() === item.word.toLowerCase() && v.meaning) {
+                            meaning = v.meaning;
+                        }
+                    });
+                });
+                uniqueMap.set(item.word, { sentence: item.sentence, meaning: meaning });
+            }
+        });
+        
+        let cards = [];
+        uniqueMap.forEach((data, word) => {
+            cards.push({ word: word, context: data.sentence, meaning: data.meaning });
+        });
+        appState.flashcards = cards.sort(() => Math.random() - 0.5);
+        renderFlashcard();
+    }
+
+    function renderFlashcard() {
+        if (appState.flashcards.length === 0) return;
+        const card = appState.flashcards[appState.flashcardIndex];
+        const cardEl = document.getElementById('flashcard');
+        if(cardEl) cardEl.classList.remove('flipped');
+        appState.isFlipped = false;
+
+        setTimeout(() => {
+            const fcFront = document.getElementById('fcFront');
+            const fcBack = document.getElementById('fcBack');
+            const fcProgress = document.getElementById('fcProgress');
+            
+            if(fcFront) fcFront.innerText = card.word;
+            
+            if(fcBack) {
+                const highlightedContext = card.context.replace(new RegExp(card.word, 'gi'), `<span class="text-brand font-bold bg-orange-100 px-1 rounded">${card.word}</span>`);
+                let backHtml = highlightedContext;
+                if(card.meaning) backHtml += `<div class="mt-4 text-sm text-brand font-bold border-t border-orange-200 pt-3">${card.meaning}</div>`;
+                fcBack.innerHTML = backHtml;
+            }
+            
+            if(fcProgress) fcProgress.innerText = `${appState.flashcardIndex + 1} / ${appState.flashcards.length}`;
+        }, 200);
+    }
+    
+    function flipCard() {
+        const cardEl = document.getElementById('flashcard');
+        if(!cardEl) return;
+        appState.isFlipped = !appState.isFlipped;
+        if(appState.isFlipped) cardEl.classList.add('flipped');
+        else cardEl.classList.remove('flipped');
+    }
+    
+    function changeFlashcard(dir) {
+        let newIdx = appState.flashcardIndex + dir;
+        if(newIdx < 0) newIdx = appState.flashcards.length - 1;
+        if(newIdx >= appState.flashcards.length) newIdx = 0;
+        appState.flashcardIndex = newIdx;
+        renderFlashcard();
+    }
+
+    function generateQuiz() {
+        let quizList = drillSentences.map(item => {
+            const regex = new RegExp(`(${item.word})`, 'i');
+            const parts = item.sentence.split(regex);
+            let qText = item.sentence;
+            if (parts.length > 1) qText = item.sentence.replace(regex, "_______");
+            return { question: qText, answer: item.word };
+        });
+        appState.quizzes = quizList.sort(() => Math.random() - 0.5);
+        renderQuiz();
+    }
+
+    function renderQuiz() {
+        if(appState.quizIndex >= appState.quizzes.length) {
+            const quizContent = document.getElementById('quizContent');
+            const quizOptions = document.getElementById('quizOptions');
+            const quizFeedback = document.getElementById('quizFeedback');
+            
+            if(quizContent) {
+                quizContent.innerHTML = `
+                    <div class="text-center">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <div class="text-brand text-2xl font-bold">Hoàn thành Quiz!</div>
+                        <div class="text-slate-500 mt-2">Tổng điểm: ${appState.score}</div>
+                    </div>`;
+            }
+            if(quizOptions) quizOptions.innerHTML = `<button onclick="location.reload()" class="col-span-2 py-3 bg-brand text-white rounded-xl shadow-lg">Làm lại từ đầu</button>`;
+            if(quizFeedback) quizFeedback.classList.add('hidden');
+            return;
+        }
+
+        const q = appState.quizzes[appState.quizIndex];
+        const quizQuestion = document.getElementById('quizQuestion');
+        const quizFeedback = document.getElementById('quizFeedback');
+        
+        if(quizQuestion) quizQuestion.innerText = q.question;
+        if(quizFeedback) quizFeedback.classList.add('hidden');
+
+        let allWords = [...new Set(drillSentences.map(s => s.word))];
+        let distractors = allWords.filter(w => w.toLowerCase() !== q.answer.toLowerCase()).sort(() => Math.random() - 0.5).slice(0, 3);
+        let options = [...distractors, q.answer].sort(() => Math.random() - 0.5);
+
+        const optsContainer = document.getElementById('quizOptions');
+        if(optsContainer) {
+            optsContainer.innerHTML = '';
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "py-4 px-2 bg-white border-2 border-slate-100 rounded-xl hover:border-brand hover:bg-orange-50 font-bold text-slate-600 transition-all shadow-sm break-words";
+                btn.innerText = opt;
+                btn.onclick = () => checkQuiz(btn, opt, q.answer);
+                optsContainer.appendChild(btn);
+            });
+        }
+    }
+
+    function checkQuiz(btn, selected, correct) {
+        const buttons = document.querySelectorAll('#quizOptions button');
+        buttons.forEach(b => b.disabled = true);
+        const feedback = document.getElementById('quizFeedback');
+        const feedbackText = document.getElementById('feedbackText');
+        if(feedback) feedback.classList.remove('hidden');
+
+        if(selected.toLowerCase() === correct.toLowerCase()) {
+            btn.classList.add('bg-green-500', 'border-green-600', 'text-white');
+            btn.classList.remove('bg-white', 'text-slate-600');
+            appState.score += 10;
+            const quizScore = document.getElementById('quizScore');
+            if(quizScore) quizScore.innerText = `Điểm: ${appState.score}`;
+            if(feedbackText) {
+                feedbackText.innerText = "Chính xác! 🎉";
+                feedbackText.className = "text-xl font-bold mb-2 text-green-600";
+            }
+        } else {
+            btn.classList.add('bg-red-500', 'border-red-600', 'text-white');
+            buttons.forEach(b => {
+                if(b.innerText.toLowerCase() === correct.toLowerCase()) b.classList.add('bg-green-100', 'border-green-500', 'text-green-700');
+            });
+            if(feedbackText) {
+                feedbackText.innerText = `Sai rồi. Đáp án là: ${correct}`;
+                feedbackText.className = "text-xl font-bold mb-2 text-red-500";
+            }
+        }
+    }
+    function nextQuiz() { appState.quizIndex++; renderQuiz(); }
+
+    function downloadWord() {
+        let html = `<html><head><meta charset='utf-8'></head><body><h1>TOEIC SPEAKING ANSWERS</h1>`;
+        appState.questions.forEach((q, i) => {
+            if(q.userText) html += `<h3>Q${i+1}: ${q.topic}</h3><p>Ans: ${q.userText}</p><hr>`;
+        });
+        html += "</body></html>";
+        const blob = new Blob([html], {type: 'application/msword'});
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'TuUyen_Answers.doc';
+        a.click();
+    }
+
+    // Khởi chạy App
+    window.onload = init;
+
+</script>
+</body>
+</html>
